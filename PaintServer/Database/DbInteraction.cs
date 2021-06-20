@@ -67,10 +67,18 @@ namespace PaintServer.Database
 
         public UserStatistics GetUserStatistics(string email)
         {
-                UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
-                return statistics;
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            return statistics;
         }
 
+        public void ShowAllUsers()
+        {
+            var Users = _db.Users;
+            foreach (var u in Users)
+            {
+                Console.WriteLine($"{u.Email} {u.FirstName} {u.LastName} {u.UserPassword}");
+            }
 
+        }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GhRiX/FqjkenGL2L+focoBACYOAjelPbqFufB8u6M0g+G86VlCuew+x73s7vpb7TJeQzbGra9dUNXxo1ckW6mA==",
+  "dgSpecHash": "Qclg0gxCT8NPKz971r0YdgRlvwLXKN5rYL67l0xAV4axyY99JQuENGUL5JaQ6SDyJelPukei+8IGCdg2qmdwHA==",
   "success": true,
-  "projectFilePath": "D:\\aProgramin\\Masha's C#\\PaintServer\\PaintServer\\PaintServer.csproj",
+  "projectFilePath": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pro\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Pro\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

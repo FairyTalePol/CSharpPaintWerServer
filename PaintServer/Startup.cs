@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PaintServer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace PaintServer
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            DbInteraction dbInteraction = new DbInteraction();
+            User user = new User
+            {
+                FirstName = "Mariia",
+                LastName = "Yakovenko",
+                Email = "mashayakovenko7@gmail.com",
+                UserPassword = "aaaaaaa"
+            };
+            dbInteraction.CreateUser(user, "2021.06.21", "2021.06.21 00:40:41");
+            dbInteraction.ShowAllUsers();
         }
 
         public IConfiguration Configuration { get; }
