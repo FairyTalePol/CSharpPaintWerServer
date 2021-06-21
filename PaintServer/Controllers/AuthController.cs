@@ -30,5 +30,13 @@ namespace PaintServer.Controllers
             userData = _bl.CreateUser(newUserData);
             return Ok(userData);
         }
+
+        [HttpGet]
+        [Route("authorize")]
+        public IActionResult Authorize([FromQuery] string email, string password)
+        {
+            string userId = _bl.CheckUser(email, password);
+            return Ok(userId);
+        }
     }
 }

@@ -50,5 +50,11 @@ namespace PaintServer
             return user;
         }
 
+        public string CheckUser(string email, string password)
+        {
+            string userId = dal.CheckUser(email, password);
+            return userId;
+        }
+
     }
 }

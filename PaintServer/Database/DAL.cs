@@ -60,6 +60,25 @@ namespace PaintServer.Database
             return user.Id.ToString();
         }
 
+        public string CheckUser(string email, string password)
+        {
+            string userId="";
+            try
+            {
+                User user = _db.Users.First(u => u.Email == email);
+                if(user.UserPassword==password)
+                {
+                    userId=user.Id.ToString();
+                }
+            }
+            catch
+            {
+                throw new ArgumentNullException("No user found");
+            }
+            
+            return userId;
+        }
+
         public void SaveJson(string email, string lastActivity)
         {
             UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
