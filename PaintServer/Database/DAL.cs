@@ -1,37 +1,52 @@
-﻿using System;
+﻿using PaintServer.Entities;
+using System;
 using System.Linq;
 
 namespace PaintServer.Database
 {
-    public class DbInteraction
+    public class DAL
     {
         private AppContext _db;
-        private User _user;
-        private UserStatistics _userStatistics;
 
-        public DbInteraction()
-        {
+        private static DAL _dal;
+
+        private DAL()
+        {        
             _db = AppContext.Create();
         }
 
-        public void CreateUser(User user, string registrationDate, string lastActivity)
+        public static DAL Create()
         {
-            _user = new User
+            if (_dal == null)
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                UserPassword = user.UserPassword
-            };
+                _dal = new DAL();
+            }
+            return _dal;
+        }
 
-            _userStatistics = new UserStatistics
+        public string CreateUser(User user, string registrationDate, string lastActivity)
+        {
+            _db.Users.Add(user);
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch
+            {
+                new Exception("Oops. Smth went wrong.");
+            }
+
+            UserStatistics userStatistics = new UserStatistics
             {
                 RegistrationDate = registrationDate,
                 LastActivity = lastActivity
-            };
+              
 
-            _db.Users.Add(_user);
-            _db.Statistics.Add(_userStatistics);
+            };
+            userStatistics.UserId = user.Id;
+
+           
+            _db.Statistics.Add(userStatistics);
 
             try
             {
@@ -41,6 +56,8 @@ namespace PaintServer.Database
             {
                 new Exception("Oops. Smth went wrong.");
             }
+
+            return user.Id.ToString();
         }
 
         public void SaveJson(string email, string lastActivity)
