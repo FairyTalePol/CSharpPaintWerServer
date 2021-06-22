@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PaintServer.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,20 @@ namespace PaintServer.Controllers
             _bl.AddPicture(picture);
             return Ok("Picture added successfully");
         }
+
+        [HttpGet]
+        [Route("userid")]
+        public IActionResult GetPictures([FromQuery] int userId)
+        {
+            PictureData[] pictures = _bl.GetPictures(userId);
+            List<PictureData> res = new List<PictureData>();
+            foreach(PictureData p in pictures)
+            {
+                res.Add(p);
+            }
+            return Ok(res);
+        }
+
 
     }
 }

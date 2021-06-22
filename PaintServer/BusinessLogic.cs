@@ -87,6 +87,24 @@ namespace PaintServer
             return id;
         }
 
+        public PictureData[] GetPictures(int userId)
+        {
+            Pictures[] pics = null;
+            pics = dal.GetPicturesByUserId(userId);
+
+            PictureData[] res = new PictureData[pics.Length];
+
+            for (int i=0; i<pics.Length; i++)
+            {
+                res[i] = new PictureData();
+                res[i].Picture = pics[i].Picture;
+                res[i].Type = pics[i].PictureType;
+                res[i].UserId = pics[i].UserId;
+            }
+
+            return res;
+        }
+
         public string CheckUser(string email, string password)
         {
             string userId = dal.CheckUser(email, password);

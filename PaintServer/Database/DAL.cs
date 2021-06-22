@@ -123,31 +123,30 @@ namespace PaintServer.Database
 
         public User GetUserById(int id)
         {
-            var users = _db.Users.Where(p => p.Id == id);
-            User res;
-            if (users.Count() > 0)
+            //var users = _db.Users.Where(p => p.Id == id);
+            try
             {
-                res = users.ElementAt(0);
+                User user = _db.Users.First(u => u.Id == id);
+                return user;
             }
-            else
+            //User res;
+            //if (users.Count() > 0)
+            //{
+            //    res = users.ElementAt(0);
+            //}
+          //  else
+          catch
             {
-                throw new ArgumentException("User not found");
+                throw new ArgumentNullException("User not found");
             }
-            return users.ElementAt(0);
+           // return users.ElementAt(0);
         }
 
         public void UpdateUserStatistics(int id, string pictureType)
         {
-            var userStat = _db.Statistics.Where(p => p.Id == id);
-            UserStatistics stat = null;
-            if (userStat.Count() > 0)
-            {
-                stat = userStat.ElementAt(0);
-            }
-            else
-            {
-                throw new ArgumentException("User statistics does not exist");
-            }
+            
+            UserStatistics stat = _db.Statistics.First(p => p.Id == id);
+          
 
             if (pictureType=="JSON")
             {
@@ -158,12 +157,29 @@ namespace PaintServer.Database
             {
                 stat.AmountBMP += 1;
             }
+
+            stat.LastActivity = DateTime.Now.ToString();
            
             _db.Statistics.Attach(stat);
             _db.Entry(stat).Property(x => x.AmountBMP).IsModified = true;
             _db.Entry(stat).Property(x => x.AmountJson).IsModified = true;
+            _db.Entry(stat).Property(x => x.LastActivity).IsModified = true;
             _db.SaveChanges();
             
+        }
+
+
+        public Pictures[] GetPicturesByUserId(int id)
+        {
+            var pics = _db.Pictures.Where(p => p.UserId == id);
+            Pictures[] res = new Pictures[pics.Count()];
+            int i = 0;
+            foreach(Pictures p in pics)
+            {
+                res[i] = p;
+                i++;
+            }
+            return res;
         }
 
         public void ShowAllUsers()
