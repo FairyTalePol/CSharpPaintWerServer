@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaintServer.Database
@@ -26,5 +27,7 @@ namespace PaintServer.Database
         public string UserPassword { get; set; }
         
         public UserStatistics Statistics { get; set; }
+
+        public ICollection<Pictures> Pictures { get; set; }
     }
 }

@@ -7,6 +7,8 @@ namespace PaintServer.Database
         private static AppContext _appContext;
         public DbSet<User> Users { get; set; }
         public DbSet<UserStatistics> Statistics { get; set; }
+
+        public DbSet<Pictures> Pictures { get; set; }
         private AppContext()
         {
             Database.EnsureCreated();
@@ -39,6 +41,10 @@ namespace PaintServer.Database
                 .HasOne(u => u.Statistics)
                 .WithOne(s => s.User)
                 .HasForeignKey<UserStatistics>(s => s.UserId);
+
+            builder.Entity<User>()
+                .HasMany(u => u.Pictures)
+                .WithOne(s => s.User);
 
 
             builder.Entity<UserStatistics>()

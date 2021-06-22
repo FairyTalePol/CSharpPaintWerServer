@@ -44,7 +44,6 @@ namespace PaintServer.Database
 
             };
             userStatistics.UserId = user.Id;
-
            
             _db.Statistics.Add(userStatistics);
 
@@ -58,6 +57,21 @@ namespace PaintServer.Database
             }
 
             return user.Id.ToString();
+        }
+
+
+        public int AddPicture(Pictures picture)
+        {
+            _db.Pictures.Add(picture);
+            //try
+            //{
+                _db.SaveChanges();
+            //}
+            //catch
+            //{
+            //    new Exception("Oops. Smth went wrong.");
+            //}
+            return picture.Id;
         }
 
         public string CheckUser(string email, string password)
@@ -105,6 +119,51 @@ namespace PaintServer.Database
         {
             UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
             return statistics;
+        }
+
+        public User GetUserById(int id)
+        {
+            var users = _db.Users.Where(p => p.Id == id);
+            User res;
+            if (users.Count() > 0)
+            {
+                res = users.ElementAt(0);
+            }
+            else
+            {
+                throw new ArgumentException("User not found");
+            }
+            return users.ElementAt(0);
+        }
+
+        public void UpdateUserStatistics(int id, string pictureType)
+        {
+            var userStat = _db.Statistics.Where(p => p.Id == id);
+            UserStatistics stat = null;
+            if (userStat.Count() > 0)
+            {
+                stat = userStat.ElementAt(0);
+            }
+            else
+            {
+                throw new ArgumentException("User statistics does not exist");
+            }
+
+            if (pictureType=="JSON")
+            {
+                stat.AmountJson += 1;
+
+            }
+            else if (pictureType=="BMP")
+            {
+                stat.AmountBMP += 1;
+            }
+           
+            _db.Statistics.Attach(stat);
+            _db.Entry(stat).Property(x => x.AmountBMP).IsModified = true;
+            _db.Entry(stat).Property(x => x.AmountJson).IsModified = true;
+            _db.SaveChanges();
+            
         }
 
         public void ShowAllUsers()
