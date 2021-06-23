@@ -87,7 +87,7 @@ namespace PaintServer.Database
             }
             catch
             {
-                throw new ArgumentNullException("No user found");
+                return "-1";
             }
             
             return userId;
