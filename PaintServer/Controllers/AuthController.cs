@@ -28,7 +28,15 @@ namespace PaintServer.Controllers
         {
             NewUserData userData;
             userData = _bl.CreateUser(newUserData);
-            return Ok(userData);
+            if (userData.Id!="0")
+            {
+                return Ok(userData);
+            }
+            else
+            {
+                return BadRequest("User already exists");
+            }
+         
         }
 
         [HttpGet]
