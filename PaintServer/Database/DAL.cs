@@ -73,8 +73,8 @@ namespace PaintServer.Database
             return picture.Id;
         }
 
-        public string CheckUser(string email, string password)
-        {
+        public string CheckUser(string email, string password, string lastActivity)
+        {////////////////!!!
             string userId="";
             try
             {
@@ -82,6 +82,9 @@ namespace PaintServer.Database
                 if(user.UserPassword==password)
                 {
                     userId=user.Id.ToString();
+                    UserStatistics statistics = _db.Statistics.First(s => s.User.Id == user.Id);
+                    statistics.LastActivity = lastActivity;
+                    _db.SaveChanges();
                 }
             }
             catch

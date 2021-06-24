@@ -107,7 +107,7 @@ namespace PaintServer
 
         public string CheckUser(string email, string password)
         {
-            string userId = dal.CheckUser(email, password);
+            string userId = dal.CheckUser(email, password, DateTime.Now.ToString());
             return userId;
         }
 
