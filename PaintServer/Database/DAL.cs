@@ -139,10 +139,19 @@ namespace PaintServer.Database
             }
         }
 
-        public UserStatistics GetUserStatistics(int id)
+        public SingleUserStatistics GetUserStatistics(int id)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
-            return statistics;
+            UserStatistics statisticsDB = _db.Statistics.First(s => s.User.Id == id);
+            SingleUserStatistics statistics=new SingleUserStatistics();
+            statistics.Id = statisticsDB.Id.ToString();
+            statistics.UserId = statisticsDB.UserId.ToString();
+            statistics.AmountBMP = statisticsDB.AmountBMP.ToString();
+            statistics.AmountJson = statisticsDB.AmountJson.ToString();
+            statistics.AmountJPG = statisticsDB.AmountJPG.ToString();
+            statistics.AmountPNG = statisticsDB.AmountPNG.ToString();
+            statistics.RegistrationDate = statisticsDB.RegistrationDate;
+            statistics.LastActivity = statisticsDB.LastActivity;
+            return statistics;     
         }
 
         public User GetUserById(int id)

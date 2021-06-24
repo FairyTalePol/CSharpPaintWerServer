@@ -49,9 +49,9 @@ namespace PaintServer.Controllers
 
         [HttpGet]
         [Route("getStatistics")]
-        public IActionResult GetUserStatistics([FromQuery] string userId)
+        public IActionResult GetUserStatistics([FromQuery] string _userId)
         {
-            UserStatistics statistics = _bl.GetUserStatistics(Convert.ToInt32(userId));
+            SingleUserStatistics statistics = _bl.GetUserStatistics(Convert.ToInt32(_userId));
             return Ok(statistics);
         }
 

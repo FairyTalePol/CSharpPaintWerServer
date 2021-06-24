@@ -219,3 +219,4 @@ D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\ref\PaintServer.dll
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.pdb
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.genruntimeconfig.cache
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.csproj.AssemblyReference.cache

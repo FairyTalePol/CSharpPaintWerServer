@@ -111,9 +111,9 @@ namespace PaintServer
             return userId;
         }
 
-        public UserStatistics GetUserStatistics (int userId)
+        public SingleUserStatistics GetUserStatistics (int userId)
         {
-            UserStatistics statistics = _dal.GetUserStatistics(userId);
+            SingleUserStatistics statistics = _dal.GetUserStatistics(userId);
             return statistics;
         }
     }
