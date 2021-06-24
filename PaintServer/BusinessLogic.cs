@@ -9,13 +9,13 @@ namespace PaintServer
 {
     public class BusinessLogic
     {
-        public DAL dal;
+        private DAL _dal;
         static BusinessLogic _bl;
         
 
         private BusinessLogic()
         {
-            dal = DAL.Create();
+            _dal = DAL.Create();
         }
 
         public static BusinessLogic Create()
@@ -38,7 +38,7 @@ namespace PaintServer
                 u.UserPassword = user.UserPassword;
                 u.Email = user.Email;
                 
-                user.Id = dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());              
+                user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());              
             }
             catch (ArgumentException e)
             {
@@ -55,7 +55,7 @@ namespace PaintServer
             User user;
             //try
             //{
-                user = dal.GetUserById(picture.UserId);
+                user = _dal.GetUserById(picture.UserId);
             //}
             //catch
             //{
@@ -71,7 +71,7 @@ namespace PaintServer
                     p.UserId = picture.UserId;
                     p.Picture = picture.Picture;
                     p.PictureType = picture.Type;
-                    id = dal.AddPicture(p);
+                    id = _dal.AddPicture(p);
                 }
                 catch (ArgumentException e)
                 {
@@ -81,7 +81,7 @@ namespace PaintServer
 
             if (id!=-1)//если картинка реально добавилась, работаем со статистикой
             {
-                dal.UpdateUserStatistics(picture.UserId, picture.Type);
+                _dal.UpdateUserStatistics(picture.UserId, picture.Type);
             }
            
             return id;
@@ -90,7 +90,7 @@ namespace PaintServer
         public PictureData[] GetPictures(int userId)
         {
             Pictures[] pics = null;
-            pics = dal.GetPicturesByUserId(userId);
+            pics = _dal.GetPicturesByUserId(userId);
 
             PictureData[] res = new PictureData[pics.Length];
 
@@ -107,9 +107,14 @@ namespace PaintServer
 
         public string CheckUser(string email, string password)
         {
-            string userId = dal.CheckUser(email, password, DateTime.Now.ToString());
+            string userId = _dal.CheckUser(email, password, DateTime.Now.ToString());
             return userId;
         }
 
+        public UserStatistics GetUserStatistics (int userId)
+        {
+            UserStatistics statistics = _dal.GetUserStatistics(userId);
+            return statistics;
+        }
     }
 }

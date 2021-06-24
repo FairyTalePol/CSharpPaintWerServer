@@ -46,5 +46,14 @@ namespace PaintServer.Controllers
             string userId = _bl.CheckUser(email, password);
             return Ok(userId);
         }
+
+        [HttpGet]
+        [Route("getStatistics")]
+        public IActionResult GetUserStatistics([FromQuery] string userId)
+        {
+            UserStatistics statistics = _bl.GetUserStatistics(Convert.ToInt32(userId));
+            return Ok(statistics);
+        }
+
     }
 }
