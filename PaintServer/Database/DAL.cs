@@ -31,12 +31,13 @@ namespace PaintServer.Database
             {
                 _db.SaveChanges();
             }
-            catch
+            catch (Exception e)
             {
-                new Exception("Oops. Smth went wrong.");
+                Console.WriteLine(e.Message);
             }
 
-            UserStatistics userStatistics = new UserStatistics
+
+    UserStatistics userStatistics = new UserStatistics
             {
                 RegistrationDate = registrationDate,
                 LastActivity = lastActivity
