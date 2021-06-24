@@ -91,9 +91,9 @@ namespace PaintServer.Database
             return userId;
         }
 
-        public void SaveJson(string email, string lastActivity)
+        public void SaveJson(int id, string lastActivity)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
             if (statistics != null)
             {
                 statistics.AmountJson++;
@@ -102,9 +102,9 @@ namespace PaintServer.Database
             }
         }
 
-        public void SaveBMP(string email, string lastActivity)
+        public void SaveBMP(int id, string lastActivity)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
             if (statistics != null)
             {
                 statistics.AmountBMP++;
@@ -113,9 +113,9 @@ namespace PaintServer.Database
             }
         }
 
-        public void SaveJPG(string email, string lastActivity)
+        public void SaveJPG(int id, string lastActivity)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
             if (statistics != null)
             {
                 statistics.AmountJPG++;
@@ -124,9 +124,9 @@ namespace PaintServer.Database
             }
         }
 
-        public void SavePNG(string email, string lastActivity)
+        public void SavePNG(int id, string lastActivity)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
             if (statistics != null)
             {
                 statistics.AmountPNG++;
@@ -135,9 +135,9 @@ namespace PaintServer.Database
             }
         }
 
-        public UserStatistics GetUserStatistics(string email)
+        public UserStatistics GetUserStatistics(int id)
         {
-            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Id == id);
             return statistics;
         }
 
