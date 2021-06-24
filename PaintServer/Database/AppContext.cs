@@ -56,8 +56,16 @@ namespace PaintServer.Database
                .HasDefaultValue(0);
 
             builder.Entity<UserStatistics>()
+               .Property(s => s.AmountJPG)
+               .HasDefaultValue(0);
+
+            builder.Entity<UserStatistics>()
+               .Property(s => s.AmountPNG)
+               .HasDefaultValue(0);
+
+            builder.Entity<UserStatistics>()
               .Property(s => s.AmountTotal)
-              .HasComputedColumnSql("[AmountBMP]+[AmountJson]");
+              .HasComputedColumnSql("[AmountBMP]+[AmountJson]+[AmountJPG]+[AmountPNG]");
         }
     }
 }

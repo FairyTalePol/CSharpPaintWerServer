@@ -13,6 +13,8 @@ namespace PaintServer.Database
         public User User { get; set; }
         public int AmountBMP { get; set; }
         public int AmountJson { get; set; }
+        public int AmountJPG { get; set; }
+        public int AmountPNG { get; set; }
         public int AmountTotal { get; set; }
 
         
