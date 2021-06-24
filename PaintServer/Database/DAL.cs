@@ -40,8 +40,6 @@ namespace PaintServer.Database
             {
                 RegistrationDate = registrationDate,
                 LastActivity = lastActivity
-              
-
             };
             userStatistics.UserId = user.Id;
            
@@ -115,6 +113,28 @@ namespace PaintServer.Database
             }
         }
 
+        public void SaveJPG(string email, string lastActivity)
+        {
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            if (statistics != null)
+            {
+                statistics.AmountJPG++;
+                statistics.LastActivity = lastActivity;
+                _db.SaveChanges();
+            }
+        }
+
+        public void SavePNG(string email, string lastActivity)
+        {
+            UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
+            if (statistics != null)
+            {
+                statistics.AmountPNG++;
+                statistics.LastActivity = lastActivity;
+                _db.SaveChanges();
+            }
+        }
+
         public UserStatistics GetUserStatistics(string email)
         {
             UserStatistics statistics = _db.Statistics.First(s => s.User.Email == email);
@@ -157,12 +177,22 @@ namespace PaintServer.Database
             {
                 stat.AmountBMP += 1;
             }
+            else if(pictureType=="JPG")
+            {
+                stat.AmountJPG++;
+            }
+            else if(pictureType=="PNG")
+            {
+                stat.AmountPNG++;
+            }
 
             stat.LastActivity = DateTime.Now.ToString();
            
             _db.Statistics.Attach(stat);
             _db.Entry(stat).Property(x => x.AmountBMP).IsModified = true;
             _db.Entry(stat).Property(x => x.AmountJson).IsModified = true;
+            _db.Entry(stat).Property(x => x.AmountJPG).IsModified = true;
+            _db.Entry(stat).Property(x => x.AmountPNG).IsModified = true;
             _db.Entry(stat).Property(x => x.LastActivity).IsModified = true;
             _db.SaveChanges();
             
