@@ -61,7 +61,7 @@ namespace PaintServer {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на paintDb.
+        ///   Ищет локализованную строку, похожую на paintDb1.
         /// </summary>
         public static string Database {
             get {

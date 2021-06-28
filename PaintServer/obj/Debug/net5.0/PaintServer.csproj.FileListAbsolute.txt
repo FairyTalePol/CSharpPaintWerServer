@@ -220,3 +220,15 @@ D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.pdb
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.genruntimeconfig.cache
 D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\obj\Debug\net5.0\PaintServer.csproj.AssemblyReference.cache
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\DnsClient.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\MongoDB.Bson.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\MongoDB.Driver.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\SharpCompress.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+D:\aProgramin\Masha's C#\OurPaintServer\OurPaintServer\PaintServer\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll

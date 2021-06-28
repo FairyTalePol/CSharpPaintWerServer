@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Database" xml:space="preserve">
-    <value>paintDb</value>
+    <value>paintDb1</value>
   </data>
   <data name="Server" xml:space="preserve">
     <value>(localdb)\MSSQLLocalDB</value>

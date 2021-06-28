@@ -1,5 +1,6 @@
 ﻿using PaintServer.Database;
 using PaintServer.Entities;
+using PaintServer.MongoDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace PaintServer
     public class BusinessLogic
     {
         private DAL _dal;
+        private DALNoSQL _dalNoSQL;
         static BusinessLogic _bl;
         
 
         private BusinessLogic()
         {
             _dal = DAL.Create();
+            _dalNoSQL = DALNoSQL.Create();
         }
 
         public static BusinessLogic Create()
@@ -34,11 +37,34 @@ namespace PaintServer
                 user.Validate();
                 User u = new User();
                 u.FirstName = user.FirstName;
-                u.LastName = user.LastName;
+                u.LastName =  user.LastName;
                 u.UserPassword = user.UserPassword;
                 u.Email = user.Email;
+               
+                user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());
+
+                UserNoSQL user1 = new UserNoSQL
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    UserPassword = user.UserPassword,
+                    Statistics = new UserStatisticsNoSQL
+                    {
+                        AmountBMP = 0,
+                        AmountJson = 0,
+                        AmountJPG = 0,
+                        AmountPNG = 0,
+                        AmountTotal = 0,
+                        RegistrationDate = DateTime.Now.ToString(),
+                        LastActivity = DateTime.Now.ToString(),
+
+                    },
+
+                };
+
+                _dalNoSQL.CreateUser(user1);
                 
-                user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());              
             }
             catch (ArgumentException e)
             {
@@ -108,6 +134,10 @@ namespace PaintServer
         public string CheckUser(string email, string password)
         {
             string userId = _dal.CheckUser(email, password, DateTime.Now.ToString());
+
+            UserNoSQL user = _dalNoSQL.GetUserByEmail(email);
+            _dalNoSQL.UpdateUser(email, user);
+
             return userId;
         }
 
