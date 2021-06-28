@@ -34,6 +34,24 @@ namespace PaintServer.MongoDatabase
             collection.InsertOne(user);
         }
 
+        public bool IsUserUnique(UserNoSQL user)
+        {
+            bool isUserUnique = true;
+            var collection = _db.GetCollection();
+            try
+            {
+                UserNoSQL user1 = GetUserByEmail(user.Email);
+                isUserUnique = false;
+            }
+            catch
+            {
+                return isUserUnique;
+            }
+
+            return isUserUnique;
+           
+        }
+
         public UserNoSQL GetUserByEmail(string email)
         {
             var collection = _db.GetCollection();

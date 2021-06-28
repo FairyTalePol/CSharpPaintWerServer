@@ -43,6 +43,7 @@ namespace PaintServer
                
                 user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());
 
+
                 UserNoSQL user1 = new UserNoSQL
                 {
                     FirstName = user.FirstName,
@@ -62,8 +63,10 @@ namespace PaintServer
                     },
 
                 };
-
-                _dalNoSQL.CreateUser(user1);
+                if (_dalNoSQL.IsUserUnique(user1))
+                {
+                    _dalNoSQL.CreateUser(user1);
+                }
                 
             }
             catch (ArgumentException e)
@@ -129,6 +132,12 @@ namespace PaintServer
             }
 
             return res;
+        }
+
+        public bool ChangePassword(string userId, string password)
+        {
+            bool isPasswordChanged = _dal.ChangePassword(userId, password);
+            return isPasswordChanged;
         }
 
         public string CheckUser(string email, string password)

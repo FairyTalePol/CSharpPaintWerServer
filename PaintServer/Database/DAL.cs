@@ -154,6 +154,26 @@ namespace PaintServer.Database
             return statistics;     
         }
 
+        public bool ChangePassword(string userId, string password)
+        {
+            bool isPasswordChanged = false;
+            int id = Convert.ToInt32(userId);
+            try
+            {
+                User user = _db.Users.First(u => u.Id == id);
+                user.UserPassword = password;
+                user.Statistics.LastActivity = DateTime.Now.ToString();
+                _db.SaveChanges();
+                isPasswordChanged = true;
+            }
+            catch
+            {
+                return isPasswordChanged;
+            }
+
+            return isPasswordChanged;
+        }
+
         public User GetUserById(int id)
         {
             //var users = _db.Users.Where(p => p.Id == id);
