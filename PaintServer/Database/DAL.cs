@@ -24,38 +24,36 @@ namespace PaintServer.Database
             return _dal;
         }
 
+
         public string CreateUser(User user, string registrationDate, string lastActivity)
         {
-            _db.Users.Add(user);
-            try
+            User userInDb = _db.Users.FirstOrDefault(u => u.Email == user.Email);
+            if (userInDb == null)
             {
+                _db.Users.Add(user);
                 _db.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
 
+                UserStatistics userStatistics = new UserStatistics
+                {
+                    RegistrationDate = registrationDate,
+                    LastActivity = lastActivity
+                };
+                userStatistics.UserId = user.Id;
 
-    UserStatistics userStatistics = new UserStatistics
-            {
-                RegistrationDate = registrationDate,
-                LastActivity = lastActivity
-            };
-            userStatistics.UserId = user.Id;
-           
-            _db.Statistics.Add(userStatistics);
+                _db.Statistics.Add(userStatistics);
 
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch
-            {
-                new Exception("Oops. Smth went wrong.");
+                try
+                {
+                    _db.SaveChanges();
+                }
+                catch
+                {
+                    new Exception("Oops. Smth went wrong.");
+                }
+                return user.Id.ToString();
             }
 
-            return user.Id.ToString();
+            return "0";
         }
 
 

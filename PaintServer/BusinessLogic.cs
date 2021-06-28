@@ -30,17 +30,18 @@ namespace PaintServer
             return _bl;
         }
 
+
         public NewUserData CreateUser(NewUserData user)
-        {      
+        {
             try
             {
                 user.Validate();
                 User u = new User();
                 u.FirstName = user.FirstName;
-                u.LastName =  user.LastName;
+                u.LastName = user.LastName;
                 u.UserPassword = user.UserPassword;
                 u.Email = user.Email;
-               
+
                 user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());
 
 
@@ -67,7 +68,7 @@ namespace PaintServer
                 {
                     _dalNoSQL.CreateUser(user1);
                 }
-                
+
             }
             catch (ArgumentException e)
             {
