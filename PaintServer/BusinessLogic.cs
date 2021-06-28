@@ -141,6 +141,12 @@ namespace PaintServer
             return isPasswordChanged;
         }
 
+        public string GetUserPassword(string userId)
+        {
+            string password = _dal.GetUserPassword(userId);
+            return password;
+        }
+
         public string CheckUser(string email, string password)
         {
             string userId = _dal.CheckUser(email, password, DateTime.Now.ToString());

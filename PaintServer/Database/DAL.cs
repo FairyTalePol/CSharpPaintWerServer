@@ -152,6 +152,23 @@ namespace PaintServer.Database
             return statistics;     
         }
 
+        public string GetUserPassword(string userId)
+        {
+            string password = "";
+            try
+            {
+                User user = GetUserById(Convert.ToInt32(userId));
+                password = user.UserPassword;
+            }
+            catch
+            {
+                return "No user found";
+            }
+            
+
+            return password;
+        }
+
         public bool ChangePassword(string userId, string password)
         {
             bool isPasswordChanged = false;

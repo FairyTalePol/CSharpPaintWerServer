@@ -55,21 +55,28 @@ namespace PaintServer.Controllers
             return Ok(statistics);
         }
 
-        //[HttpGet]
-        //[Route("getPassword")]
-        //public IActionResult GetUserPassword([FromQuery] string userId)
-        //{
-        //    string password = "";
-        //    return Ok(password);
-        //}
+        [HttpGet]
+        [Route("getPassword")]
+        public IActionResult GetUserPassword([FromQuery] string userId)
+        {
+            string password = _bl.GetUserPassword(userId);
+            if (password != "No user found")
+            { 
+                return Ok(password); 
+            }
+            else
+            {
+                return BadRequest(password);
+            }
+        }
 
-        //[HttpPost]
-        //[Route("changePassword")]
-        //public IActionResult ChangePassword([FromBody] string userId, string password)
-        //{
-        //    bool isPasswordChanged = _bl.ChangePassword(userId, password);
-        //    return Ok(isPasswordChanged);
-        //}
+        [HttpPost]
+        [Route("changePassword")]
+        public IActionResult ChangePassword([FromBody] string userId, string password)
+        {
+            bool isPasswordChanged = _bl.ChangePassword(userId, password);
+            return Ok(isPasswordChanged);
+        }
 
     }
 }
