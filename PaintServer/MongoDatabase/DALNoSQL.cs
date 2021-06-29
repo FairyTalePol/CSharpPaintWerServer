@@ -68,6 +68,41 @@ namespace PaintServer.MongoDatabase
             }
         }
 
+        public void ChangePassword(string email, string password)
+        {
+            UserNoSQL user = GetUserByEmail(email);
+            user.UserPassword = password;
+            user.Statistics.LastActivity = DateTime.Now.ToString();
+            UpdateUser(email, user);
+        }
+
+        public void UpdateUserStatistics(string email, string pictureType)
+        {
+            UserNoSQL user = GetUserByEmail(email);
+
+            if (pictureType == "JSON")
+            {
+                user.Statistics.AmountJson++;
+
+            }
+            else if (pictureType == "BMP")
+            {
+                user.Statistics.AmountBMP++;
+            }
+            else if (pictureType == "JPG")
+            {
+                user.Statistics.AmountJPG++;
+            }
+            else if (pictureType == "PNG")
+            {
+                user.Statistics.AmountPNG++;
+            }
+
+            user.Statistics.LastActivity = DateTime.Now.ToString();
+
+            UpdateUser(email, user);
+        }
+
         public List<UserNoSQL> GetAllUsers()
         {
             var collection = _db.GetCollection();

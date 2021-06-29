@@ -15,6 +15,6 @@ namespace PaintServer.MongoDatabase
         public string Email { get; set; }
         public string UserPassword { get; set; }
         public UserStatisticsNoSQL Statistics { get; set; }
-       // public ICollection<PictureNoSQL> UserPictures { get; set; }
+  
     }
 }
