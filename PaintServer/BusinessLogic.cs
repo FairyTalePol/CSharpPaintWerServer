@@ -123,7 +123,7 @@ namespace PaintServer
             {
                 _dal.UpdateUserStatistics(picture.UserId, picture.Type);
                 string email = user.Email;
-                _dalNoSQL.UpdateUserStatistics(email, picture.Type);
+                _dalNoSQL.UpdateUserStatistics(email, picture.Type.ToString()) ;
             }
            
             return id;

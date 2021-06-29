@@ -1,4 +1,5 @@
 ﻿using PaintServer.Entities;
+using PaintServer.Enums;
 using System;
 using System.Linq;
 
@@ -213,26 +214,26 @@ namespace PaintServer.Database
            // return users.ElementAt(0);
         }
 
-        public void UpdateUserStatistics(int id, string pictureType)
+        public void UpdateUserStatistics(int id, PictureType pictureType)
         {
             
             UserStatistics stat = _db.Statistics.First(p => p.Id == id);
           
 
-            if (pictureType=="JSON")
+            if (pictureType==PictureType.JSON)
             {
                 stat.AmountJson += 1;
 
             }
-            else if (pictureType=="BMP")
+            else if (pictureType== PictureType.BMP)
             {
                 stat.AmountBMP += 1;
             }
-            else if(pictureType=="JPG")
+            else if(pictureType== PictureType.JPEG)
             {
                 stat.AmountJPG++;
             }
-            else if(pictureType=="PNG")
+            else if(pictureType== PictureType.PNG)
             {
                 stat.AmountPNG++;
             }
