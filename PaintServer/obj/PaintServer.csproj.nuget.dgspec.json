@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj": {}
+    "C:\\Users\\hp\\Desktop\\Paintik\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj": {}
   },
   "projects": {
-    "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj": {
+    "C:\\Users\\hp\\Desktop\\Paintik\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Paintik\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj",
         "projectName": "PaintServer",
-        "projectPath": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj",
-        "packagesPath": "C:\\Users\\Pro\\.nuget\\packages\\",
-        "outputPath": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\obj\\",
+        "projectPath": "C:\\Users\\hp\\Desktop\\Paintik\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\Paintik\\CSharpPaintWerServer\\PaintServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Pro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

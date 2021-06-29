@@ -70,9 +70,9 @@ namespace PaintServer.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("changePassword")]
-        public IActionResult ChangePassword([FromBody] string userId, string password)
+        public IActionResult ChangePassword([FromQuery] string userId, string password)
         {
             bool isPasswordChanged = _bl.ChangePassword(userId, password);
             return Ok(isPasswordChanged);
