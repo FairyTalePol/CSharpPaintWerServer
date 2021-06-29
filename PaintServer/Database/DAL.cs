@@ -141,12 +141,15 @@ namespace PaintServer.Database
         {
             UserStatistics statisticsDB = _db.Statistics.First(s => s.User.Id == id);
             SingleUserStatistics statistics=new SingleUserStatistics();
-            statistics.Id = statisticsDB.Id.ToString();
-            statistics.UserId = statisticsDB.UserId.ToString();
+            //  statistics.Id = statisticsDB.Id.ToString();
+            //  statistics.UserId = statisticsDB.UserId.ToString();
+            User user = _db.Users.First(u => u.Id == id);
+            statistics.Email = user.Email;
             statistics.AmountBMP = statisticsDB.AmountBMP.ToString();
             statistics.AmountJson = statisticsDB.AmountJson.ToString();
             statistics.AmountJPG = statisticsDB.AmountJPG.ToString();
             statistics.AmountPNG = statisticsDB.AmountPNG.ToString();
+            statistics.AmountTotal = statisticsDB.AmountTotal.ToString();
             statistics.RegistrationDate = statisticsDB.RegistrationDate;
             statistics.LastActivity = statisticsDB.LastActivity;
             return statistics;     

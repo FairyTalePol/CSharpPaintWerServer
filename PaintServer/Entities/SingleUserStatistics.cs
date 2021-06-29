@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 namespace PaintServer.Entities
 {
     public class SingleUserStatistics
-    {
-        public string Id { get; set; }
-        public string UserId { get; set; }
+    { 
+        public string Email { get; set; }
         public string AmountBMP { get; set; }
         public string AmountJson { get; set; }
         public string AmountJPG { get; set; }
