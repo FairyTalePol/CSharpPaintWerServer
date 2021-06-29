@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj": {}
+    "D:\\Учеба\\Server29.06\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj": {}
   },
   "projects": {
-    "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj": {
+    "D:\\Учеба\\Server29.06\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj",
+        "projectUniqueName": "D:\\Учеба\\Server29.06\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj",
         "projectName": "PaintServer",
-        "projectPath": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\PaintServer.csproj",
-        "packagesPath": "C:\\Users\\Pro\\.nuget\\packages\\",
-        "outputPath": "D:\\aProgramin\\Masha's C#\\OurPaintServer\\OurPaintServer\\PaintServer\\obj\\",
+        "projectPath": "D:\\Учеба\\Server29.06\\CSharpPaintWerServer\\PaintServer\\PaintServer.csproj",
+        "packagesPath": "C:\\Users\\egoru\\.nuget\\packages\\",
+        "outputPath": "D:\\Учеба\\Server29.06\\CSharpPaintWerServer\\PaintServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Pro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\egoru\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

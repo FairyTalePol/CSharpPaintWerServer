@@ -14,6 +14,8 @@ namespace PaintServer.Database
         public int Id { get; private set; }
         public int UserId { get; set; }
 
+        public string Name { get; set; }
+
         public User User { get; set; }
         public string PictureType { get; set; }
         public string Picture { get; set; } //Либо json, либо сериализованная картинка

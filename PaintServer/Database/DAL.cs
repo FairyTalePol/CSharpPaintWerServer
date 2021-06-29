@@ -60,14 +60,14 @@ namespace PaintServer.Database
         public int AddPicture(Pictures picture)
         {
             _db.Pictures.Add(picture);
-            //try
-            //{
+            try
+            {
                 _db.SaveChanges();
-            //}
-            //catch
-            //{
-            //    new Exception("Oops. Smth went wrong.");
-            //}
+            }
+            catch
+            {
+                new Exception("Oops. Smth went wrong.");
+            }
             return picture.Id;
         }
 
