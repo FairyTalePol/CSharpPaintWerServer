@@ -100,15 +100,17 @@ namespace PaintServer
                 try
                 {
                     Pictures p = new Pictures();
-                    p.UserId = picture.UserId;
-                    p.Picture = picture.Picture;
+                    p.UserId = picture.UserId;                
                     p.PictureType = picture.Type.ToString();
+
+                    while (_dal.nameTaken(picture.UserId, picture.Name))
+                    {
+                        picture.Name += "_1";
+                    }
+                    
                     p.Name = picture.Name;
 
-                    //сохранение картинки в объект
-                    SavePictureToFile(picture.Picture, picture.Name);
-
-                    
+                    p.Picture = SavePictureToFile(picture.Picture, picture.Name);
                     id = _dal.AddPicture(p);
                 }
                 catch (ArgumentException e)
@@ -117,7 +119,7 @@ namespace PaintServer
                 }
             }
 
-            if (id!=-1)//если картинка реально добавилась, работаем со статистикой
+            if (id!=-1)
             {
                 _dal.UpdateUserStatistics(picture.UserId, picture.Type.ToString()); ;
             }
@@ -125,7 +127,7 @@ namespace PaintServer
             return id;
         }
 
-        public void SavePictureToFile(string json, string name)
+        public string SavePictureToFile(string json, string name)
         {
             string writePath = $"{System.IO.Directory.GetCurrentDirectory()}/Pictures/{name}.pic";
 
@@ -136,13 +138,12 @@ namespace PaintServer
                 {
                     sw.WriteLine(text);
                 }
-
-              
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+            return $"{name}.pic";
         }
 
         public PictureData[] GetPictures(int userId)

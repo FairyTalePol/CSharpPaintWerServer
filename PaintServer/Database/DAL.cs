@@ -263,6 +263,23 @@ namespace PaintServer.Database
             return res;
         }
 
+        public bool nameTaken(int userId, string name)
+        {
+            bool res = false;
+            Pictures[] pics = GetPicturesByUserId(userId);
+
+            foreach(Pictures p in pics)
+            {
+                if (p.Name.Equals(name))
+                {
+                    res = true;
+                    break;
+                }
+
+            }
+            return res;
+        }
+
         public void ShowAllUsers()
         {
             var Users = _db.Users;
