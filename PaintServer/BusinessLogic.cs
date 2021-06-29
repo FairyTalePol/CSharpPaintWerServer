@@ -121,7 +121,9 @@ namespace PaintServer
 
             if (id!=-1)
             {
-                _dal.UpdateUserStatistics(picture.UserId, picture.Type.ToString()); ;
+                _dal.UpdateUserStatistics(picture.UserId, picture.Type);
+                string email = user.Email;
+                _dalNoSQL.UpdateUserStatistics(email, picture.Type);
             }
            
             return id;
@@ -167,6 +169,9 @@ namespace PaintServer
         public bool ChangePassword(string userId, string password)
         {
             bool isPasswordChanged = _dal.ChangePassword(userId, password);
+            User user = _dal.GetUserById(Convert.ToInt32(userId));
+            string email = user.Email;
+            _dalNoSQL.ChangePassword(email, password);
             return isPasswordChanged;
         }
 
