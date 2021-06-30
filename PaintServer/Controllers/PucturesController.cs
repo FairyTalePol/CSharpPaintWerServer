@@ -43,6 +43,15 @@ namespace PaintServer.Controllers
             return Ok(res);
         }
 
+        [HttpGet]
+        [Route("pictureById")]
+        public IActionResult GetPicture([FromQuery] int userId, [FromQuery] string pictureName)
+        {
+            PictureData picture = _bl.GetPicture(userId, pictureName);
+          
+            return Ok(picture);
+        }
+
 
     }
 }

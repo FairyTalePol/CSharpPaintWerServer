@@ -264,7 +264,14 @@ namespace PaintServer.Database
             return res;
         }
 
-        public bool nameTaken(int userId, string name)
+        public Pictures GetPictureByUserIdAndName(int id, string Name)
+        {
+            var res = _db.Pictures.First(p => p.UserId == id && p.Name==Name);
+           
+            return res;
+        }
+
+        public bool NameTaken(int userId, string name)
         {
             bool res = false;
             Pictures[] pics = GetPicturesByUserId(userId);
@@ -279,6 +286,16 @@ namespace PaintServer.Database
 
             }
             return res;
+        }
+
+        public void DeletePicture(string name, int userId)
+        {
+ 
+
+            Pictures p = _db.Pictures.First(u => u.Name == name && u.UserId==userId);
+            _db.Attach(p);
+            _db.Entry(p).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _db.SaveChanges();
         }
 
         public void ShowAllUsers()

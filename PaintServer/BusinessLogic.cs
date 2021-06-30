@@ -20,7 +20,7 @@ namespace PaintServer
         private BusinessLogic()
         {
             _dal = DAL.Create();
-            _dalNoSQL = DALNoSQL.Create();
+            //_dalNoSQL = DALNoSQL.Create();
         }
 
         public static BusinessLogic Create()
@@ -102,15 +102,14 @@ namespace PaintServer
                     Pictures p = new Pictures();
                     p.UserId = picture.UserId;                
                     p.PictureType = picture.Type.ToString();
-
-                    while (_dal.nameTaken(picture.UserId, picture.Name))
-                    {
-                        picture.Name += "_1";
-                    }
-                    
                     p.Name = picture.Name;
-
                     p.Picture = SavePictureToFile(picture.Picture, picture.Name);
+                    
+                    if (_dal.NameTaken(picture.UserId, picture.Name))
+                    {
+                        _dal.DeletePicture(p.Name, p.UserId);
+                    }
+               
                     id = _dal.AddPicture(p);
                 }
                 catch (ArgumentException e)
@@ -123,7 +122,7 @@ namespace PaintServer
             {
                 _dal.UpdateUserStatistics(picture.UserId, picture.Type);
                 string email = user.Email;
-                _dalNoSQL.UpdateUserStatistics(email, picture.Type.ToString()) ;
+                //_dalNoSQL.UpdateUserStatistics(email, picture.Type.ToString()) ;
             }
            
             return id;
@@ -161,17 +160,39 @@ namespace PaintServer
                 res[i].Picture = pics[i].Picture;
                 res[i].Type = (PictureType)Enum.Parse(typeof(PictureType), pics[i].PictureType);
                 res[i].UserId = pics[i].UserId;
+                res[i].Name = pics[i].Name;
             }
 
             return res;
         }
+
+        public PictureData GetPicture(int userId, string Name)
+        {
+            Pictures pic = null;
+            pic = _dal.GetPictureByUserIdAndName(userId, Name);
+
+            string readPath = $"{System.IO.Directory.GetCurrentDirectory()}/Pictures/";
+
+            PictureData res;
+
+         
+                res = new PictureData();
+            res.Picture = File.ReadAllText(readPath + pic.Picture);
+                res.Type = (PictureType)Enum.Parse(typeof(PictureType), pic.PictureType);
+                res.UserId = pic.UserId;
+                res.Name = pic.Name;
+            
+
+            return res;
+        }
+
 
         public bool ChangePassword(string userId, string password)
         {
             bool isPasswordChanged = _dal.ChangePassword(userId, password);
             User user = _dal.GetUserById(Convert.ToInt32(userId));
             string email = user.Email;
-            _dalNoSQL.ChangePassword(email, password);
+            //_dalNoSQL.ChangePassword(email, password);
             return isPasswordChanged;
         }
 
