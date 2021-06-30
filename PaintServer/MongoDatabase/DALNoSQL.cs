@@ -83,19 +83,23 @@ namespace PaintServer.MongoDatabase
             if (pictureType == "JSON")
             {
                 user.Statistics.AmountJson++;
+                user.Statistics.AmountTotal++;
 
             }
             else if (pictureType == "BMP")
             {
                 user.Statistics.AmountBMP++;
+                user.Statistics.AmountTotal++;
             }
-            else if (pictureType == "JPG")
+            else if (pictureType == "JPEG")
             {
                 user.Statistics.AmountJPG++;
+                user.Statistics.AmountTotal++;
             }
             else if (pictureType == "PNG")
             {
                 user.Statistics.AmountPNG++;
+                user.Statistics.AmountTotal++;
             }
 
             user.Statistics.LastActivity = DateTime.Now.ToString();

@@ -20,7 +20,7 @@ namespace PaintServer
         private BusinessLogic()
         {
             _dal = DAL.Create();
-            //_dalNoSQL = DALNoSQL.Create();
+            _dalNoSQL = DALNoSQL.Create();
         }
 
         public static BusinessLogic Create()
@@ -47,29 +47,29 @@ namespace PaintServer
                 user.Id = _dal.CreateUser(u, DateTime.Now.ToString(), DateTime.Now.ToString());
 
 
-                //UserNoSQL user1 = new UserNoSQL
-                //{
-                //    FirstName = user.FirstName,
-                //    LastName = user.LastName,
-                //    Email = user.Email,
-                //    UserPassword = user.UserPassword,
-                //    Statistics = new UserStatisticsNoSQL
-                //    {
-                //        AmountBMP = 0,
-                //        AmountJson = 0,
-                //        AmountJPG = 0,
-                //        AmountPNG = 0,
-                //        AmountTotal = 0,
-                //        RegistrationDate = DateTime.Now.ToString(),
-                //        LastActivity = DateTime.Now.ToString(),
+                UserNoSQL user1 = new UserNoSQL
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    UserPassword = user.UserPassword,
+                    Statistics = new UserStatisticsNoSQL
+                    {
+                        AmountBMP = 0,
+                        AmountJson = 0,
+                        AmountJPG = 0,
+                        AmountPNG = 0,
+                        AmountTotal = 0,
+                        RegistrationDate = DateTime.Now.ToString(),
+                        LastActivity = DateTime.Now.ToString(),
 
-                //    },
+                    },
 
-                //};
-                //if (_dalNoSQL.IsUserUnique(user1))
-                //{
-                //    _dalNoSQL.CreateUser(user1);
-                //}
+                };
+                if (_dalNoSQL.IsUserUnique(user1))
+                {
+                    _dalNoSQL.CreateUser(user1);
+                }
 
             }
             catch (ArgumentException e)
@@ -122,7 +122,7 @@ namespace PaintServer
             {
                 _dal.UpdateUserStatistics(picture.UserId, picture.Type);
                 string email = user.Email;
-                //_dalNoSQL.UpdateUserStatistics(email, picture.Type.ToString()) ;
+                _dalNoSQL.UpdateUserStatistics(email, picture.Type.ToString()) ;
             }
            
             return id;
@@ -177,7 +177,7 @@ namespace PaintServer
 
          
                 res = new PictureData();
-            res.Picture = File.ReadAllText(readPath + pic.Picture);
+                res.Picture = File.ReadAllText(readPath + pic.Picture);
                 res.Type = (PictureType)Enum.Parse(typeof(PictureType), pic.PictureType);
                 res.UserId = pic.UserId;
                 res.Name = pic.Name;
@@ -192,7 +192,7 @@ namespace PaintServer
             bool isPasswordChanged = _dal.ChangePassword(userId, password);
             User user = _dal.GetUserById(Convert.ToInt32(userId));
             string email = user.Email;
-            //_dalNoSQL.ChangePassword(email, password);
+            _dalNoSQL.ChangePassword(email, password);
             return isPasswordChanged;
         }
 
@@ -206,8 +206,8 @@ namespace PaintServer
         {
             string userId = _dal.CheckUser(email, password, DateTime.Now.ToString());
 
-            //UserNoSQL user = _dalNoSQL.GetUserByEmail(email);
-            //_dalNoSQL.UpdateUser(email, user);
+            UserNoSQL user = _dalNoSQL.GetUserByEmail(email);
+            _dalNoSQL.UpdateUser(email, user);
 
             return userId;
         }

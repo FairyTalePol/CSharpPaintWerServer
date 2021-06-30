@@ -16,9 +16,9 @@ namespace PaintServer.Entities
         public string RegistrationDate { get; set; }
         public string LastActivity { get; set; }
 
-        public SingleUserStatistics()
-        {
+        //public SingleUserStatistics()
+        //{
 
-        }
+        //}
     }
 }
